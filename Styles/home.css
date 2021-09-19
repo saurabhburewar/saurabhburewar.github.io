@@ -1,0 +1,108 @@
+.home {
+  position: relative;
+  border: none;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 12.5%;
+  z-index: 1;
+}
+.navbox {
+  float: right;
+  width: 49%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.navboxin {
+  float: left;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.navheads {
+  float: left;
+  width: 15%;
+  height: 100%;
+  font-size: 15px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.5s;
+}
+.navheads:hover {
+  cursor: pointer;
+  color: #e43f5a;
+}
+.navheads.navselected {
+  color: #e43f5a;
+  border-bottom: 2px solid #e43f5a;
+}
+.navheads1 {
+  width: 20%;
+}
+.resume {
+  position: relative;
+  color: #e43f5a;
+  width: 60%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #e43f5a;
+  box-shadow: 0 0 0.5em 0 #e43f5a, 0 0 0.5em 0 #e43f5a inset;
+  border: 2.5px solid #e43f5a;
+  border-radius: 0.5em;
+  transition-duration: 0.5s;
+}
+.resume::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #e43f5a;
+  box-shadow: 0 0 2em 0.2em #e43f5a;
+  opacity: 0;
+  z-index: -10;
+  transition: opacity 100ms linear;
+}
+.resume:hover,
+.resume:focus {
+  color: #08080e;
+  text-shadow: none;
+}
+.resume:hover::before,
+.resume:focus::before {
+  opacity: 1;
+}
+
+.homebox {
+  width: 100%;
+  height: 87%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+.homeboxin {
+  width: 80%;
+  height: 80%;
+}
+
+/* Css for displays is in displays.css */

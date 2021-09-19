@@ -1,0 +1,48 @@
+.contactbox {
+  width: 30%;
+  height: 40%;
+  float: left;
+}
+.socialhead {
+  float: left;
+  width: 100%;
+  height: 30%;
+  font-size: 25px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialbox {
+  float: left;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialicon {
+  position: relative;
+  width: 25%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialicon div {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  border-radius: 100%;
+  background: #fff;
+  filter: blur(1em);
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+.socialicon:hover div {
+  opacity: 1;
+}
+.socialicon svg {
+  width: 40%;
+  z-index: 200;
+}

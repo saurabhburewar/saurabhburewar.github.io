@@ -9,6 +9,16 @@ tl.to('.name span', {y: "0%", duration: 1, stagger: 0.25});
 tl.to('.intro', {opacity: 0, duration: 1.5, delay: 1});
 tl.to('.intro', {zIndex:-100});
 
+document.getElementById('navcheckbox').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('navbox').style.display = "flex";
+        document.getElementById('navbar').style.background = "#08080e";
+    } else {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+    }
+})
+
 document.getElementById('headAbout').addEventListener("mousedown", function() {
     document.getElementById('displayAbout').style.display = "flex";
     document.getElementById('displaySkills').style.display = "none";
@@ -20,6 +30,11 @@ document.getElementById('headAbout').addEventListener("mousedown", function() {
     document.getElementById('headProject').classList.remove("navselected");
     document.getElementById('headExp').classList.remove("navselected");
     document.getElementById('headContact').classList.remove("navselected");
+    if (screen.width <= 560) {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+        document.getElementById("navcheckbox").checked = false;
+    }
 })
 
 document.getElementById('headSkill').addEventListener("mousedown", function() {
@@ -33,6 +48,14 @@ document.getElementById('headSkill').addEventListener("mousedown", function() {
     document.getElementById('headProject').classList.remove("navselected");
     document.getElementById('headExp').classList.remove("navselected");
     document.getElementById('headContact').classList.remove("navselected");
+    if (screen.width <= 560) {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+        document.getElementById("navcheckbox").checked = false;
+        window.addEventListener('touchstart', function() {
+            document.getElementById('scrollmessage').style.display = "none";
+        });
+    }
 })
 
 document.getElementById('headProject').addEventListener("mousedown", function() {
@@ -46,6 +69,11 @@ document.getElementById('headProject').addEventListener("mousedown", function() 
     document.getElementById('headProject').classList.add("navselected");
     document.getElementById('headExp').classList.remove("navselected");
     document.getElementById('headContact').classList.remove("navselected");
+    if (screen.width <= 560) {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+        document.getElementById("navcheckbox").checked = false;
+    }
 })
 
 document.getElementById('headExp').addEventListener("mousedown", function() {
@@ -59,6 +87,11 @@ document.getElementById('headExp').addEventListener("mousedown", function() {
     document.getElementById('headProject').classList.remove("navselected");
     document.getElementById('headExp').classList.add("navselected");
     document.getElementById('headContact').classList.remove("navselected");
+    if (screen.width <= 560) {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+        document.getElementById("navcheckbox").checked = false;
+    }
 })
 document.getElementById('pmlink').addEventListener("mousedown", function() {
     document.getElementById('displayAbout').style.display = "none";
@@ -84,4 +117,9 @@ document.getElementById('headContact').addEventListener("mousedown", function() 
     document.getElementById('headProject').classList.remove("navselected");
     document.getElementById('headExp').classList.remove("navselected");
     document.getElementById('headContact').classList.add("navselected");
+    if (screen.width <= 560) {
+        document.getElementById('navbox').style.display = "none";
+        document.getElementById('navbar').style.background = "transparent";
+        document.getElementById("navcheckbox").checked = false;
+    }
 })

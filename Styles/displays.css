@@ -1,0 +1,63 @@
+.homeboxdisplay {
+  position: relative;
+  float: right;
+  width: 100%;
+  height: 100%;
+}
+
+#displayAbout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.aboutbox {
+  width: 70%;
+  height: 50%;
+  word-wrap: break-word;
+  color: #fff;
+  font-size: 18px;
+}
+#name {
+  font-size: 25px;
+}
+
+#displaySkills {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+/* Css for skills tab is in skills.css */
+
+#displayProject {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#displayExp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+/* Css for Projects and Experience tabs is in pro&exp.css */
+
+#displayContact {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+/* Css for Contact tab is in contact.css */

@@ -1,0 +1,127 @@
+.projectcolumn1 {
+  width: 47%;
+  height: fit-content;
+  float: left;
+}
+.projectcolumn2 {
+  width: 47%;
+  height: fit-content;
+  float: right;
+}
+
+.probox {
+  position: relative;
+  float: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  margin: 0 0 10% 0;
+  /* box-shadow: 0px 0px 5px 5px #0d0d16 inset; */
+}
+
+.prostack {
+  background: linear-gradient(to top left, #050509, #090910, #050509, #090910, #050509);
+  float: left;
+  width: 100%;
+  height: 10%;
+  color: #fff;
+  font-size: 14px;
+  font-family: calibri light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition-duration: 0.5s;
+}
+.prohead {
+  float: left;
+  background: linear-gradient(to top left, #050509, #090910, #050509, #090910, #050509);
+  padding: 0% 5%;
+  width: 90%;
+  height: 30%;
+  transition-duration: 0.5s;
+}
+.probox:hover .prostack {
+  opacity: 1;
+}
+.proname {
+  float: left;
+  width: 70%;
+  height: 100%;
+  font-size: 15px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.prodate {
+  float: right;
+  width: 20%;
+  height: 100%;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 2% 2% 0;
+}
+.proimg {
+  float: left;
+  width: 100%;
+  height: 60%;
+}
+.proimg1 {
+  background-image: url(../images/rgbtonir.PNG);
+}
+.proimg2 {
+  background-image: url(../images/parse.png);
+}
+.proimg3 {
+  background-image: url(../images/learningtab.png);
+}
+.proimg4 {
+  background-image: url(../images/mouse.PNG);
+}
+.proimg5 {
+  background-image: url(../images/OS.png);
+}
+.proimg6 {
+  background-image: url(../images/hashtag.png);
+}
+.proimg7 {
+  background-image: url(../images/testcase.JPG);
+}
+.proimg8 {
+  background-image: url(../images/engtohindi.JPG);
+}
+.proimg9 {
+  background-image: url(../images/tictactoe.JPG);
+}
+.proimg10 {
+  background-image: url(../images/sumo.JPG);
+}
+
+@media only screen and (max-width: 560px) {
+  .probox {
+    height: 300px;
+  }
+  .projectcolumn1 {
+    width: 100%;
+  }
+  .projectcolumn2 {
+    width: 100%;
+    float: left;
+  }
+  .prostack {
+    font-size: 9px;
+    opacity: 1;
+  }
+  .proname {
+    font-size: 12px;
+  }
+  .prodate {
+    font-size: 10px;
+    margin: 0 0 0 0;
+  }
+}

@@ -4,7 +4,7 @@
     "title": "Mapping RGB face video data to core body temperature (RAKSHAK)",
     "category": "ml",
     "favourite": true,
-    "image": "./src/static/projects/rgbtonir.PNG",
+    "image": "./public/images/projects/rgbnir.jpg",
     "link": "https://github.com/saurabhburewar/ML_Mapping-RGB-face-video-data-to-core-body-temperature-at-runtime-RAKSHAK",
     "description": "Preprocessed and augmented image datasets (resizing, flipping, brightness adjustment) to improve model robustness. Developed CNN Re-colorization approach for RGB-to-NIR image conversion, evaluated with MSE & human assessment. Applied postprocessing (joint bilateral filter, contrast/saturation adjustment) to reduce noise and enhance visibility. Built a CNN-based approach to predict temperature from images, achieving 52% accuracy."
   },
@@ -13,116 +13,125 @@
     "title": "English to Hindi Language translation",
     "category": "ml",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/enghindi.jpg",
+    "link": "https://github.com/saurabhburewar/ML_English-to-Hindi-Language-translation",
+    "description": "Explored and Experimented with various Transformer-based and Recurrent Neural Network models and referenced multiple researches of state-of-the-art Machine Translation models to build a model that can perform machine translation from English to Hindi Language."
   },
   {
     "id": "testCasePrioritization",
     "title": "Test Case Prioritization",
     "category": "ml",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/testcase.jpg",
+    "link": "https://www.youtube.com/watch?v=UMqSxRbUb3Y",
+    "description": "Implemented a research, taking prioritizing test cases in a CI context as a Ranking problem and modelling a prioritizing agent in a CI environment as a Reinforcement Learning Problem. This uses one of the ranking approches discussed in the researchto build the learning model."
   },
   {
     "id": "hashtagAnalysis",
     "title": "Hashtag Analysis",
     "category": "ml",
     "favourite": true,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/hashtag.jpg",
+    "link": "https://saurabhburewar.github.io/Data-and-Networks_Hashtag-analysis/",
+    "description": "Pulling Tweet data using Twitter API and Web-scraping posts from Koo (twitter-like social media) to create networks around popular social topics. Analyse networks to understand the spread of topics and movements in a social network and learn about patterns that make a movement successful."
   },
   {
     "id": "bibliographyParsing",
     "title": "Parsing Large scale bibliography data",
     "category": "ml",
     "favourite": true,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/parse.jpg",
+    "link": "https://github.com/saurabhburewar/Data-and-Networks_ParsingLargeBibliographyData",
+    "description": "Pulling data from a PubMed database and parsing required information into CSV files. Building Networks as larger as 122 million nodes from the parsed data for further analysis."
   },
   {
     "id": "rlTicTacToe",
     "title": "Reinforcement Learning - TicTacToe",
     "category": "ml",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/tictactoe.jpg",
+    "link": "https://github.com/saurabhburewar/ML_RL-TicTacToe",
+    "description": "This is a simple implementation of a Reinforcement Learning agent that learns without any neural network, future searches, possible outcomes, etc. but by simple trials. This allows good performace with less computational power in simple games."
   },
   {
     "id": "learnersTab",
     "title": "The Learners Tab",
     "category": "web",
     "favourite": true,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/learnerstab.jpg",
+    "link": "https://saurabhburewar.github.io/Web_TheLearnersTab/",
+    "description": "Researching existing products and getting customer requirements from university students, especially programmers. Building the app using React, Node and various public APIs."
   },
   {
     "id": "portfolio3D",
     "title": "3D Portfolio Website",
     "category": "web",
     "favourite": false,
-    "image": "",
+    "image": "./public/images/projects/portfolio_three.jpg",
     "link": "",
-    "description": ""
+    "description": "A portfolio website built on react-three-fiber (a react renderer for Three.js). It has a 3D office room design which can be explored and has portfolio details displayed in objects around the room. Starts with a normal 2D portfolio website on home URL with the 3D website accessible a another route. [Under Development]"
   },
   {
     "id": "githubOrganizer",
     "title": "Github Repo Organizer",
     "category": "web",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/repoorg.jpg",
+    "link": "https://saurabhburewar.github.io/GitRepoOrganizer/",
+    "description": "A simple yet great way to organize your repositories in github. This supports automatic grouping of the repos based on a specified naming convention and an easy-to-navigate view which makes it easy to go through your repositories"
   },
   {
     "id": "artShowcase",
     "title": "Art Showcasing Website",
     "category": "web",
     "favourite": false,
-    "image": "",
+    "image": "./public/images/projects/artshow.jpg",
     "link": "",
-    "description": ""
+    "description": "A Website design for Art showcase that support user authentication, categorizing, tags, likes, etc using React and firebase. [Under Development]"
   },
   {
     "id": "roomDesign3D",
     "title": "3D Room Design",
     "category": "web",
     "favourite": true,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/room.jpg",
+    "link": "https://saurabhburewar.github.io/Artworks_Room/",
+    "description": "A simple 3d room design made entirely using HTML and CSS, without any Javascript or 3D libraries like threejs."
   },
   {
     "id": "remoteMouse",
     "title": "Remote Mouse",
     "category": "others",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/mouse.jpg",
+    "link": "https://github.com/saurabhburewar/mouse",
+    "description": "An android application to use on an android phone as an air mouse pointer for a computer. Uses bluetooth to transfer data to the computer server from android device through sockets."
   },
   {
     "id": "x86OS",
     "title": "X-86 Architecture Operating System",
     "category": "others",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/os.jpg",
+    "link": "https://github.com/RiturajKulshresth/OS",
+    "description": "Built a basic operating system which boots in 32-bit mode and has a keyboard driver for inputs and VGA driver for output. Also has a shell which performs very basic tasks."
   },
   {
     "id": "edgeInference",
     "title": "Edge based knowledge inference for intelligent vehicular networks",
     "category": "others",
     "favourite": false,
-    "image": "",
-    "link": "",
-    "description": ""
+    "image": "./public/images/projects/sumo.jpg",
+    "link": "https://github.com/RiturajKulshresth/Edge-based-knowledge-inference-for-intelligent-vehicular-networks-ns3-SUMO",
+    "description": "Experimented with approaches to reduce the amount of data transfered between vehicles and Road-Side-Units(RSUs) to reduce the processing power required at RSUs and make it possible to perform calculations on Lower layers instead of data transfers at higher levels."
+  },
+  {
+    "id": "firewatchWeb",
+    "title": "Firewatch Design",
+    "category": "web",
+    "favourite": true,
+    "image": "./public/images/projects/firewatch.jpg",
+    "link": "https://saurabhburewar.github.io/Artworks_Firewatch/",
+    "description": "A Web animation artwork inspired by the game 'Fire Watch', made in vanilla Js. It is a 24-hr day-night cycle animation that runs inifinitely."
   }
 ]

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   Encoded String Background Animation
 */
 
-const stringLength = 150
+const stringLength = 200
 const circleLength1 = 80
 const circleLength2 = 60
 const circleLength3 = 80
@@ -173,6 +173,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*
+  Exp Nodes Curved Path Layout
+*/
+document.addEventListener("DOMContentLoaded", () => {
+  const pathEl = document.getElementById("expPathLine");
+  const svgEl = pathEl ? pathEl.ownerSVGElement : null;
+
+  // Distribute nodes along the path (start -> end represents earliest -> most recent)
+  const nodeFractions = [
+    { selector: "#upraisedNode", fraction: 0.05 },
+    { selector: "#finezzaNode",  fraction: 0.35 },
+    { selector: "#deloitteNode", fraction: 0.65 },
+    { selector: "#wbdNode",      fraction: 0.97 },
+  ];
+
+  function positionExpNodes() {
+    if (!pathEl || !svgEl) return;
+    const totalLength = pathEl.getTotalLength();
+    if (!totalLength) return;
+
+    const vb = svgEl.viewBox.baseVal;
+    const vbWidth = vb && vb.width ? vb.width : 400;
+    const vbHeight = vb && vb.height ? vb.height : 600;
+
+    nodeFractions.forEach(({ selector, fraction }) => {
+      const node = document.querySelector(selector);
+      if (!node) return;
+      const pt = pathEl.getPointAtLength(fraction * totalLength);
+      node.style.left = `${(pt.x / vbWidth) * 100}%`;
+      node.style.top  = `${(pt.y / vbHeight) * 100}%`;
+    });
+  }
+
+  positionExpNodes();
+  window.addEventListener("resize", positionExpNodes);
+});
+
+/*
   Exp Page Toggle
 */
 document.addEventListener("DOMContentLoaded", () => {
@@ -197,66 +234,131 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*
-  Project Filter Toggle
+  Projects: render from JSON + wire up filter / detail toggle
 */
-document.addEventListener("DOMContentLoaded", () => {
+
+// Decorative SVG shared by every project list item (purely visual)
+const PROJ_ITEM_BACK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150" width="100%" height="100%"><g transform="translate(10, 10)"><path class="projItemBackSVG" d="M 33 22 L 33 118 L 38 122 L 38 25 Z" fill="#7a141d" /><path class="projItemBackSVG" d="M 38 122 L 72 98 L 72 95 L 38 118 Z" fill="#520b11" /><path class="projItemBackSVG" d="M 38 25 L 72 2 L 72 95 L 38 122 Z" fill="#9e1b24" /><path class="projItemBackSVG" d="M 38 25 L 72 2 L 72 15 L 38 38 Z" fill="#cf232e" /><path class="projItemBackSVG" d="M 41 42 L 69 22 L 69 91 L 41 113 Z" fill="none" stroke="#ff4d5a" stroke-width="1.5" opacity="0.8" /><path class="projItemBackSVG" d="M 44 23 L 56 15" stroke="#ffb3b8" stroke-width="2.5" stroke-linecap="round" /><path class="projItemBackSVG" d="M 45 58 L 58 49" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" /><path class="projItemBackSVG" d="M 45 68 L 60 57" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" /><path class="projItemBackSVG" d="M 45 80 L 65 66" stroke="#ff4d5a" stroke-width="2" stroke-linecap="round" /><path class="projItemBackSVG" d="M 45 88 L 63 75" stroke="#ff4d5a" stroke-width="2" stroke-linecap="round" /><path class="projItemBackSVG" d="M 45 96 L 58 87" stroke="#ff4d5a" stroke-width="2" stroke-linecap="round" /></g></svg>`;
+
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function buildProjItemMarkup(project) {
+  const star = project.favourite ? " &#9733;" : "";
+  return `
+    <div class="projItemContainer" data-category="${escapeHtml(project.category)}" data-favourite="${project.favourite ? "true" : "false"}" data-target="${escapeHtml(project.id)}">
+      <div class="projItemBack">${PROJ_ITEM_BACK_SVG}</div>
+      <div class="projItemBox">
+        <div class="projItemMargin"></div>
+        <div class="projItemTitle">${escapeHtml(project.title)}${star}</div>
+      </div>
+    </div>`;
+}
+
+function buildProjDescMarkup(project) {
+  const imageBlock = project.image
+    ? `<div class="projDescImg"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}"></div>`
+    : `<div class="projDescImg"></div>`;
+  const linkBlock = project.link
+    ? `<div class="projDescLink"><a href="${escapeHtml(project.link)}" class="projDescLinkBut" target="_blank" rel="noopener noreferrer">SHOW MORE</a></div>`
+    : `<div class="projDescLink"></div>`;
+  const descText = project.description && project.description.trim().length > 0
+    ? escapeHtml(project.description)
+    : "Details coming soon...";
+  return `
+    <div class="projDescPage" data-category="${escapeHtml(project.id)}">
+      <div class="projDescHeader">${escapeHtml(project.title)}</div>
+      ${imageBlock}
+      ${linkBlock}
+      <div class="projDescText">${descText}</div>
+    </div>`;
+}
+
+function sortByFavourite(items) {
+  return items.sort((a, b) => {
+    const aFav = a.getAttribute("data-favourite") === "true";
+    const bFav = b.getAttribute("data-favourite") === "true";
+    if (aFav && !bFav) return -1;
+    if (!aFav && bFav) return 1;
+    return 0;
+  });
+}
+
+function wireProjectInteractions() {
   const projFilButtons = document.querySelectorAll(".projFilterBut");
   const projFilItemList = document.getElementById("projectList");
-
-  const projFilItems = Array.from(document.querySelectorAll(".projItemContainer"));
+  const projDescPages = document.querySelectorAll(".projDescPage");
 
   projFilButtons.forEach(projFilBut => {
     projFilBut.addEventListener("click", () => {
-      const projFilButCat = projFilBut.getAttribute("data-target");
+      const targetCat = projFilBut.getAttribute("data-target");
+      const items = Array.from(document.querySelectorAll(".projItemContainer"));
 
-      projFilItems.forEach(projFilItem => {
-        const projFilItemCat = projFilItem.getAttribute("data-category");
-
-        if (projFilButCat === "all" || projFilButCat === projFilItemCat) {
-            projFilItem.classList.remove("projItemContainerHide");
+      items.forEach(item => {
+        const itemCat = item.getAttribute("data-category");
+        if (targetCat === "all" || targetCat === itemCat) {
+          item.classList.remove("projItemContainerHide");
         } else {
-            projFilItem.classList.add("projItemContainerHide");
+          item.classList.add("projItemContainerHide");
         }
       });
 
-      projFilItems.sort((a, b) => {
-          const aFav = a.getAttribute("data-favourite") === "true";
-          const bFav = b.getAttribute("data-favourite") === "true";
-
-          // If 'a' is a fav and 'b' is not, move 'a' up (return -1)
-          if (aFav && !bFav) return -1;
-          if (!aFav && bFav) return 1;
-          return 0; // Keep original order if both are same status
-        });
-
-        projFilItems.forEach(projFilItem => projFilItemList.appendChild(projFilItem));
+      sortByFavourite(items).forEach(item => projFilItemList.appendChild(item));
     });
   });
 
-  document.querySelector('.projFilterBut[data-target="all"]').click();
-});
+  document.querySelectorAll(".projItemContainer").forEach(item => {
+    item.addEventListener("click", () => {
+      const itemTarget = item.getAttribute("data-target");
+      projDescPages.forEach(page => {
+        if (page.getAttribute("data-category") === itemTarget) {
+          page.classList.remove("projDescPageHide");
+        } else {
+          page.classList.add("projDescPageHide");
+        }
+      });
+    });
+  });
 
-/*
-  Project Pages Toggle
-*/
+  const defaultFilter = document.querySelector('.projFilterBut[data-target="all"]');
+  if (defaultFilter) defaultFilter.click();
+}
+
+function renderProjects(projects) {
+  const listEl = document.getElementById("projectList");
+  const descEl = document.getElementById("projectDescriptionPages");
+  if (!listEl || !descEl) return;
+
+  listEl.innerHTML = projects.map(buildProjItemMarkup).join("");
+  descEl.innerHTML = projects.map(buildProjDescMarkup).join("");
+
+  // Show only the first description page initially; the rest start hidden
+  const descPages = descEl.querySelectorAll(".projDescPage");
+  descPages.forEach((page, idx) => {
+    if (idx !== 0) page.classList.add("projDescPageHide");
+  });
+
+  wireProjectInteractions();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  const projItemContainers = document.querySelectorAll(".projItemContainer");
-  const projDescPages = document.querySelectorAll(".projDescPage");
-
-  projItemContainers.forEach(projItemContainer => {
-    projItemContainer.addEventListener("click", () => {
-      const projItemContainerCat = projItemContainer.getAttribute("data-target");
-
-      projDescPages.forEach(projDescPage => {
-        const projDescPageCat = projDescPage.getAttribute("data-category");
-
-        if (projItemContainerCat === projDescPageCat) {
-            projDescPage.classList.remove("projDescPageHide");
-        } else {
-            projDescPage.classList.add("projDescPageHide");
-        }
-      });
+  fetch("./src/static/projects/projects.json")
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then(renderProjects)
+    .catch(err => {
+      console.error("Failed to load projects.json:", err);
+      const listEl = document.getElementById("projectList");
+      if (listEl) {
+        listEl.innerHTML = `<div class="projItemContainer"><div class="projItemBox"><div class="projItemMargin"></div><div class="projItemTitle">Could not load projects.</div></div></div>`;
+      }
     });
-  });
 });

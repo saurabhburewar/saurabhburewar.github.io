@@ -215,6 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const expButtons = document.querySelectorAll(".expNode");
   const expBlocks = document.querySelectorAll(".expDescBox");
+  const expDetailBack = document.querySelector(".expDetailBack");
+  const expModalClose = document.querySelector(".expModalClose");
 
   expButtons.forEach(expBut => {
     expBut.addEventListener("click", () => {
@@ -229,7 +231,76 @@ document.addEventListener("DOMContentLoaded", () => {
             expBl.classList.add("hideExpBox");
         }
       });
+
+      if (expDetailBack) {
+        expDetailBack.classList.add("expModalOpen");
+      }
     });
+  });
+
+  function closeExpModal() {
+    if (expDetailBack) {
+      expDetailBack.classList.remove("expModalOpen");
+    }
+  }
+
+  if (expModalClose) {
+    expModalClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeExpModal();
+    });
+  }
+  if (expDetailBack) {
+    expDetailBack.addEventListener("click", (e) => {
+      if (e.target === expDetailBack) closeExpModal();
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeExpModal();
+  });
+});
+
+/*
+  Skills Modal Toggle (mobile)
+*/
+document.addEventListener("DOMContentLoaded", () => {
+  const skillTriggers = document.querySelectorAll(".skillTrigger");
+  const skillBlocks = document.querySelectorAll(".skillsBlock");
+
+  skillTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const targetSkill = trigger.getAttribute("data-target");
+      skillBlocks.forEach(block => {
+        if (block.getAttribute("data-skill") === targetSkill) {
+          block.classList.add("skillModalOpen");
+        } else {
+          block.classList.remove("skillModalOpen");
+        }
+      });
+    });
+  });
+
+  function closeAllSkillModals() {
+    skillBlocks.forEach(block => block.classList.remove("skillModalOpen"));
+  }
+
+  skillBlocks.forEach(block => {
+    const closeBtn = block.querySelector(".skillModalClose");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        block.classList.remove("skillModalOpen");
+      });
+    }
+    block.addEventListener("click", (e) => {
+      if (e.target === block) {
+        block.classList.remove("skillModalOpen");
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllSkillModals();
   });
 });
 
@@ -294,6 +365,8 @@ function wireProjectInteractions() {
   const projFilButtons = document.querySelectorAll(".projFilterBut");
   const projFilItemList = document.getElementById("projectList");
   const projDescPages = document.querySelectorAll(".projDescPage");
+  const projDetailContainer = document.querySelector(".projDetailContainer");
+  const projModalClose = document.querySelector(".projModalClose");
 
   projFilButtons.forEach(projFilBut => {
     projFilBut.addEventListener("click", () => {
@@ -323,7 +396,31 @@ function wireProjectInteractions() {
           page.classList.add("projDescPageHide");
         }
       });
+      if (projDetailContainer) {
+        projDetailContainer.classList.add("projModalOpen");
+      }
     });
+  });
+
+  function closeProjModal() {
+    if (projDetailContainer) {
+      projDetailContainer.classList.remove("projModalOpen");
+    }
+  }
+
+  if (projModalClose) {
+    projModalClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeProjModal();
+    });
+  }
+  if (projDetailContainer) {
+    projDetailContainer.addEventListener("click", (e) => {
+      if (e.target === projDetailContainer) closeProjModal();
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeProjModal();
   });
 
   const defaultFilter = document.querySelector('.projFilterBut[data-target="all"]');

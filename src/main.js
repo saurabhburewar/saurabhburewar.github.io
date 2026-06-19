@@ -1,12 +1,12 @@
 /* 
-  Mouse Pointer
+  Mouse Pointer trail
 */
 
-const follower = document.querySelector(".cursorTrail")
+// const follower = document.querySelector(".cursorTrail")
 
-window.addEventListener('mousemove', (e) => {
-  follower.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
-});
+// window.addEventListener('mousemove', (e) => {
+//   follower.style.transform = `translate3d(calc(${e.clientX}px), calc(${e.clientY}px), 0)`;
+// });
 
 
 

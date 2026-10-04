@@ -243,7 +243,7 @@ body {
     transition: fill 0.3s ease;
 }
 .contactBlock a:hover {
-  cursor: url('./static/cursorHover.svg') 10 10, auto;
+  cursor: url('./static/cursorHover.svg') 0 0, auto;
 }
 .contactBlock a:hover .contactsvg .cls-1 {
     fill: #53b4b4;
